@@ -1,6 +1,4 @@
-uploads/*.jpg
-uploads/*.png
-models/*.h5
+input/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -16,8 +16,6 @@ Original file is located at
 - make predictions
 """
 
-!pip install yfinance --upgrade --no-cache-dir
-
 ## Further  recommendation, test multiple frameworks, see what works better on average. 
 ## Open source RL: https://docs.google.com/spreadsheets/d/1EeFPd-XIQ3mq_9snTlAZSsFY7Hbnmd7P5bbT8LPuMn0/edit#gid=0
 
@@ -46,17 +44,15 @@ from sklearn.linear_model import TheilSenRegressor
 from sklearn.metrics import r2_score
 from sklearn.metrics import mean_squared_error
 
-# Commented out IPython magic to ensure Python compatibility.
-## Save future files to your drive
-## In this notebook control for multiple testing
-from google.colab import drive
-drive.mount('/content/drive',force_remount=True)
-# %cd "/content/drive/My Drive/Colab Notebooks/Stock Prediction with Regression"
-! if test -d "input"; then rm -r "input"; fi
-# %mkdir "input"
+import os
+if os.path.isdir("input"):
+    print("Warning: Input folder found, might not work correctly if contain contents.")
+
+print("Creating input folder")
+os.mkdir("input")
 
 from pandas_datareader import data as pdr
-import fix_yahoo_finance as yf
+import yfinance as yf
 yf.pdr_override()
 TICKER="SHOP"
 INPUT_DATA = "input/%s.csv" % TICKER
